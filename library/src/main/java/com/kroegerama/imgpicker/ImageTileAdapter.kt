@@ -23,20 +23,18 @@ internal class ImageTileAdapter(
             notifyDataSetChanged()
         }
 
-    var selection = HashSet<Int>()
+    var selection = List<Uri>()
         set(value) {
             field = value
             notifyDataSetChanged()
         }
 
-    fun getSelectedImages(): ArrayList<Uri> = ArrayList<Uri>(selection.size).apply {
-        val tree = java.util.TreeSet<Int>()
-        tree.addAll(selection)
-        tree.forEach { add(imageList.getOrNull(it) ?: return@forEach) }
+    fun getSelectedImages(): List<Uri> {
+        return selection
     }
 
     fun clear() {
-        selection = HashSet()
+        selection = List<Uri>()
         selectionCountChanged(0)
     }
 
@@ -75,7 +73,7 @@ internal class ImageTileAdapter(
         val pos = getCorrectPosition(position)
         (holder as? VHImageTileBase.VHImageTile)?.update(
             imageList[pos],
-            selection.contains(position),
+            selection.contains(imageList[pos]),
             ::onImageTileClick
         )
     }
@@ -86,12 +84,14 @@ internal class ImageTileAdapter(
             clickListener.invoke(ClickedTile.ImageTile(imageList[pos]))
             return
         }
-        if (selection.contains(position)) {
+        val t = imageList[position]
+
+        if (selection.contains(t)) {
             selectView.isVisible = false
-            selection.remove(position)
+            selection.remove(t)
         } else {
             selectView.isVisible = true
-            selection.add(position)
+            selection.add(t)
         }
         selectionCountChanged.invoke(selection.size)
     }
