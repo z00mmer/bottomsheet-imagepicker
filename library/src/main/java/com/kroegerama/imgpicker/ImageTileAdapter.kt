@@ -30,7 +30,9 @@ internal class ImageTileAdapter(
         }
 
     fun getSelectedImages(): ArrayList<Uri> = ArrayList<Uri>(selection.size).apply {
-        selection.forEach { add(imageList.getOrNull(it) ?: return@forEach) }
+        val tree = java.util.TreeSet()
+        tree.addAll(selection)
+        tree.forEach { add(imageList.getOrNull(it) ?: return@forEach) }
     }
 
     fun clear() {
