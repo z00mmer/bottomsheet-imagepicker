@@ -24,13 +24,9 @@ internal class ImageTileAdapter(
         }
 
     var selection : ArrayList<Uri>()
-        set(value) {
-            field = value
-            notifyDataSetChanged()
-        }
 
     fun getSelectedImages(): List<Uri> {
-        return selection
+        return selection.toList()
     }
 
     fun clear() {
