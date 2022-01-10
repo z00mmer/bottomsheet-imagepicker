@@ -152,7 +152,7 @@ class BottomSheetImagePicker internal constructor() :
 
         val oldSelection = savedInstanceState?.getIntArray(STATE_SELECTION)
         if (oldSelection != null) {
-            adapter.selection = oldSelection.toHashSet()
+            //adapter.selection = oldSelection.toHashSet()
         }
         selectionCountChanged(adapter.selection.size)
     }
@@ -333,7 +333,7 @@ class BottomSheetImagePicker internal constructor() :
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putParcelable(STATE_CURRENT_URI, currentPhotoUri)
-        outState.putIntArray(STATE_SELECTION, adapter.selection.toIntArray())
+        //outState.putIntArray(STATE_SELECTION, adapter.selection.toIntArray())
     }
 
     private fun notifyGallery() {

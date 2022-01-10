@@ -23,7 +23,7 @@ internal class ImageTileAdapter(
             notifyDataSetChanged()
         }
 
-    var selection = List<Uri>()
+    var selection : ArrayList<Uri>()
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -34,7 +34,7 @@ internal class ImageTileAdapter(
     }
 
     fun clear() {
-        selection = List<Uri>()
+        selection.clear()
         selectionCountChanged(0)
     }
 
