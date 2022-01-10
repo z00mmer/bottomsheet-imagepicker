@@ -23,7 +23,7 @@ internal class ImageTileAdapter(
             notifyDataSetChanged()
         }
 
-    var selection : ArrayList<Uri>()
+    var selection = ArrayList<Uri>()
 
     fun getSelectedImages(): List<Uri> {
         return selection.toList()
